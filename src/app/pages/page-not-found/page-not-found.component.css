@@ -1,0 +1,10 @@
+.page-not-found-container{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 50%;
+  margin: auto;
+}
+.page-not-found{
+  position: absolute;
+}

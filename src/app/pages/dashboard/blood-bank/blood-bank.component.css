@@ -1,0 +1,25 @@
+.blood-bank-container{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.blood-bank-container-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.back-icon{
+  padding: 10px;
+}
+.back-icon:hover{
+  background-color: var(--color-light-grey);
+  padding: 10px;
+  border-radius: 5px;
+}
+.blood-bank-container-content{
+}
+th{
+  background-color: var(--color-light-grey);
+}

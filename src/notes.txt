@@ -1,0 +1,33 @@
+24th April, 2023
+
+>> npm i json-server
+>> json-server --watch db.json
+
+>> npm install jsonwebtoken @auth0/angular-jwt
+>> Created a JWT service
+
+
+https://www.youtube.com/watch?v=S20PCL9e_ks
+NodeJs and JWT Token Authentication | how to use json web token in Node js
+
+
+Things to do
+
+(ERROR) >> reusablity of mat-error (ngSwitch in place og ngIf)  link: https://stackoverflow.com/questions/48387841/angular-material-showing-two-error-messages
+(DONE) >> header in add-details components
+
+
+Dashboard tile should be clickable and should redirect to the patients/ doctor ... list of page
+
+
+26th April, 2023 6:30pm Need to check this link at home
+>>https://hashnode.com/post/supabase-authentication-with-angular-ckoh98lte0em7v9s13wa44cg3
+>>https://gist.github.com/kylerummens/c2ec82e65d137f3220748ff0dee76c3f (Authentication with Supabase with email and password)
+
+
+27th April
+>> Age instead of birth
+>> First and Last Name
+>> Add country code dropdown (India - +91, Pakistan - +92)
+>> Change all the forms and take all the input as same as doctor
+>> Make all the field compulsory / required

@@ -1,0 +1,188 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="wrapper-container">
+  <form class="half-width" [formGroup]="pharmacistForm" (ngSubmit)="onSubmit()">
+
+    <div class="input-name-group">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" required formControlName="pharmacistFirstName"/>
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistFirstName')?.touched &&
+        pharmacistForm.get('pharmacistFirstName')?.errors &&
+        pharmacistForm.get('pharmacistFirstName')?.hasError('required')
+      )">
+        First Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistFirstName')?.touched &&
+        pharmacistForm.get('pharmacistFirstName')?.errors &&
+        pharmacistForm.get('pharmacistFirstName')?.hasError('minlength')
+      )">
+        First Name must be of more than 3 characters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" required formControlName="pharmacistLastName"/>
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistLastName')?.touched &&
+        pharmacistForm.get('pharmacistLastName')?.errors &&
+        pharmacistForm.get('pharmacistLastName')?.hasError('required')
+      )">
+        Last Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistLastName')?.touched &&
+        pharmacistForm.get('pharmacistLastName')?.errors &&
+        pharmacistForm.get('pharmacistLastName')?.hasError('minlength')
+      )">
+        Last Name must be of more than 3 characters
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" required formControlName="pharmacistEmail" />
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistEmail')?.touched &&
+        pharmacistForm.get('pharmacistEmail')?.errors &&
+        pharmacistForm.get('pharmacistEmail')?.hasError('required')
+      )">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Department Name</mat-label>
+      <input matInput type="text" required formControlName="pharmacistDepartment" />
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistDepartment')?.touched &&
+        pharmacistForm.get('pharmacistDepartment')?.errors &&
+        pharmacistForm.get('pharmacistDepartment')?.hasError('required')
+      )">
+        Department is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="input-group">
+      <mat-form-field appearance="outline" class="gender-options">
+        <mat-label>Select Gender</mat-label>
+        <mat-select formControlName="pharmacistGender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistGender')?.touched &&
+        pharmacistForm.get('pharmacistGender')?.errors &&
+        pharmacistForm.get('pharmacistGender')?.hasError('required')
+      )">
+        Gender is required
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="pharmacistAge" required/>
+        <!-- <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <mat-error *ngIf="(
+          pharmacistForm.get('pharmacistAge')?.touched &&
+          pharmacistForm.get('pharmacistAge')?.errors &&
+          pharmacistForm.get('pharmacistAge')?.hasError('required')
+        )">
+        Please enter your age
+        </mat-error>
+        <mat-error *ngIf="(
+          pharmacistForm.get('pharmacistAge')?.touched &&
+          pharmacistForm.get('pharmacistAge')?.errors &&
+          pharmacistForm.get('pharmacistAge')?.hasError('max')
+        )">
+        Please enter a valid age
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="bloodgroup-options">
+        <mat-label>Select Blood Group</mat-label>
+        <mat-select formControlName="pharmacistBloodGroup">
+          <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup">
+            {{ bloodGroup }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistBloodGroup')?.touched &&
+        pharmacistForm.get('pharmacistBloodGroup')?.errors &&
+        pharmacistForm.get('pharmacistBloodGroup')?.hasError('required')
+      )">
+        Blood Group is required
+      </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-phone-group">
+      <mat-form-field class="phone-code-width" appearance="outline">
+        <mat-label>Country Code</mat-label>
+        <mat-select formControlName="pharmacistCountryCode">
+          <mat-option *ngFor="let code of codes" [value]="code">
+            {{ code }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            pharmacistForm.get('pharmacistCountryCode')?.touched &&
+            pharmacistForm.get('pharmacistCountryCode')?.errors &&
+            pharmacistForm.get('pharmacistCountryCode')?.hasError('required')
+          "
+        >
+          Code is required
+        </mat-error>
+      </mat-form-field>
+    <mat-form-field class="phone-width" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput type="tel" required formControlName="pharmacistPhoneNumber" />
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistPhoneNumber')?.touched &&
+        pharmacistForm.get('pharmacistPhoneNumber')?.errors &&
+        pharmacistForm.get('pharmacistPhoneNumber')?.hasError('required')
+      )">
+        Phone Number is required
+      </mat-error>
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistPhoneNumber')?.touched &&
+        pharmacistForm.get('pharmacistPhoneNumber')?.errors &&
+        pharmacistForm.get('pharmacistPhoneNumber')?.hasError('pattern')
+      )">
+        Please enter a valid phone number
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" required formControlName="pharmacistAddress" />
+      <mat-error *ngIf="(
+        pharmacistForm.get('pharmacistAddress')?.touched &&
+        pharmacistForm.get('pharmacistAddress')?.errors &&
+        pharmacistForm.get('pharmacistAddress')?.hasError('required')
+      )">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-groups">
+      <button mat-raised-button class="submit-btn" [disabled]="!pharmacistForm.valid">Add Pharmacist</button>
+      <button mat-raised-button color="warn" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+  <div class="illustration-container">
+    <img [src]="'assets/images/Pharmacist.avif'" alt="Pharmacist" />
+    </div>
+</div>
+</div>

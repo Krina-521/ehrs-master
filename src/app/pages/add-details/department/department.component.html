@@ -1,0 +1,67 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="wrapper-container">
+  <form class="half-width" [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Department Code</mat-label>
+      <input matInput formControlName="departmentCode" required />
+      <mat-error class="error" *ngIf="(
+        departmentForm.get('departmentCode')?.touched &&
+        departmentForm.get('departmentCode')?.errors &&
+        departmentForm.get('departmentCode')?.hasError('required')
+      )">
+    Department Code is required
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Department Name</mat-label>
+      <input matInput formControlName="departmentName" required />
+      <mat-error class="error" *ngIf="(
+        departmentForm.get('departmentName')?.touched &&
+        departmentForm.get('departmentName')?.errors &&
+        departmentForm.get('departmentName')?.hasError('required') ||
+        departmentForm.get('departmentName')?.hasError('whitespace')
+        )">
+        Department Name is required
+      </mat-error>
+      <mat-error class="error" *ngIf="(
+        departmentForm.get('departmentName')?.touched &&
+        departmentForm.get('departmentName')?.errors &&
+        departmentForm.get('departmentName')?.hasError('minlength')
+        )">
+        Department Name must be greater than three characters
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error class="error" *ngIf="(
+        departmentForm.get('description')?.touched &&
+        departmentForm.get('description')?.errors &&
+        departmentForm.get('description')?.hasError('required') ||
+        departmentForm.get('description')?.hasError('whitespace')
+        )">
+        Description is required
+      </mat-error>
+      <mat-error class="error" *ngIf="(
+        departmentForm.get('description')?.touched &&
+        departmentForm.get('description')?.errors &&
+        departmentForm.get('description')?.hasError('maxlength')
+        )">
+        Description must be of 100 or less characters.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-groups">
+      <button mat-raised-button class="submit-btn" [disabled]="!departmentForm.valid">Add Department</button>
+      <button mat-raised-button color="warn" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+  <div class="illustration-container">
+    <img [src]="'assets/images/Department.jpg'" alt="Department" />
+    </div>
+    </div>
+</div>

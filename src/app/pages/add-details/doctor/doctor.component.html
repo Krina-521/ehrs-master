@@ -1,0 +1,243 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form class="half-width" [formGroup]="doctorForm" (ngSubmit)="onSubmit()">
+      <div class="input-name-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="doctorFirstName" />
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorFirstName')?.touched &&
+              doctorForm.get('doctorFirstName')?.errors &&
+              doctorForm.get('doctorFirstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorFirstName')?.touched &&
+              doctorForm.get('doctorFirstName')?.errors &&
+              doctorForm.get('doctorFirstName')?.hasError('minlength')
+            "
+          >
+            First Name must be of greater than 3 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="doctorLastName" />
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorLastName')?.touched &&
+              doctorForm.get('doctorLastName')?.errors &&
+              doctorForm.get('doctorLastName')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorLastName')?.touched &&
+              doctorForm.get('doctorLastName')?.errors &&
+              doctorForm.get('doctorLastName')?.hasError('minlength')
+            "
+          >
+            Last Name must be of greater than 3 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput type="email" formControlName="doctorEmail" />
+        <mat-error
+          *ngIf="
+            doctorForm.get('doctorEmail')?.touched &&
+            doctorForm.get('doctorEmail')?.errors &&
+            doctorForm.get('doctorEmail')?.hasError('required')
+          "
+        >
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Department Name</mat-label>
+        <input matInput type="text" formControlName="doctorDepartment" />
+        <mat-error
+          *ngIf="
+            doctorForm.get('doctorDepartment')?.touched &&
+            doctorForm.get('doctorDepartment')?.errors &&
+            doctorForm.get('doctorDepartment')?.hasError('required')
+          "
+        >
+          Department Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline" class="gender-options">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="doctorGender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorGender')?.touched &&
+              doctorForm.get('doctorGender')?.errors &&
+              doctorForm.get('doctorGender')?.hasError('required')
+            "
+          >
+            Gender selection is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" formControlName="doctorAge" required />
+          <!-- <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="doctorAge"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorAge')?.touched &&
+              doctorForm.get('doctorAge')?.errors &&
+              doctorForm.get('doctorAge')?.hasError('required')
+            "
+          >
+            Please enter your age
+          </mat-error>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorAge')?.touched &&
+              doctorForm.get('doctorAge')?.errors &&
+              doctorForm.get('doctorAge')?.hasError('max')
+            "
+          >
+            Please enter a valid age
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="bloodgroup-options">
+          <mat-label>Select Blood Group</mat-label>
+          <!-- <input
+          type="text"
+          matInput
+          formControlName="doctorBloodGroup"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let bloodGroup of filteredBloodGroups"
+            [value]="bloodGroup"
+          >
+            {{ bloodGroup }}
+          </mat-option>
+        </mat-autocomplete> -->
+          <mat-select formControlName="doctorBloodGroup">
+            <mat-option
+              *ngFor="let bloodGroup of bloodGroups"
+              [value]="bloodGroup"
+            >
+              {{ bloodGroup }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorBloodGroup')?.touched &&
+              doctorForm.get('doctorBloodGroup')?.errors &&
+              doctorForm.get('doctorBloodGroup')?.hasError
+            "
+          >
+            Blood Group is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-phone-group">
+        <mat-form-field class="phone-code-width" appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <mat-select formControlName="doctorCountryCode">
+            <mat-option *ngFor="let code of codes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorCountryCode')?.touched &&
+              doctorForm.get('doctorCountryCode')?.errors &&
+              doctorForm.get('doctorCountryCode')?.hasError('required')
+            "
+          >
+            Code is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="phone-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="tel" formControlName="doctorPhone" />
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorPhone')?.touched &&
+              doctorForm.get('doctorPhone')?.errors &&
+              doctorForm.get('doctorPhone')?.hasError('required')
+            "
+          >
+            Phone is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              doctorForm.get('doctorPhone')?.touched &&
+              doctorForm.get('doctorPhone')?.errors &&
+              doctorForm.get('doctorPhone')?.hasError('pattern')
+            "
+          >
+            Please enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="doctorAddress" />
+        <mat-error
+          *ngIf="
+            doctorForm.get('doctorAddress')?.touched &&
+            doctorForm.get('doctorAddress')?.errors &&
+            doctorForm.get('doctorAddress')?.hasError('required')
+          "
+        >
+          Address is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!doctorForm.valid"
+        >
+          Add Doctor
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/Doctor-form.avif'" alt="Doctor" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,248 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="laboratoristForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="input-name-group">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="laboratoristFirstName"
+          />
+          <mat-error
+            *ngIf="
+              laboratoristForm.get('laboratoristFirstName')?.touched &&
+              laboratoristForm.get('laboratoristFirstName')?.errors &&
+              laboratoristForm
+                .get('laboratoristFirstName')
+                ?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              laboratoristForm.get('laboratoristFirstName')?.touched &&
+              laboratoristForm.get('laboratoristFirstName')?.errors &&
+              laboratoristForm
+                .get('laboratoristFirstName')
+                ?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="laboratoristLastName"
+          />
+          <mat-error
+            *ngIf="
+              laboratoristForm.get('laboratoristLastName')?.touched &&
+              laboratoristForm.get('laboratoristLastName')?.errors &&
+              laboratoristForm.get('laboratoristLastName')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              laboratoristForm.get('laboratoristLastName')?.touched &&
+              laboratoristForm.get('laboratoristLastName')?.errors &&
+              laboratoristForm
+                .get('laboratoristLastName')
+                ?.hasError('minlength')
+            "
+          >
+            Last Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input
+          matInput
+          type="email"
+          required
+          formControlName="laboratoristEmail"
+        />
+        <mat-error
+          *ngIf="
+            laboratoristForm.get('laboratoristEmail')?.touched &&
+            laboratoristForm.get('laboratoristEmail')?.errors &&
+            laboratoristForm.get('laboratoristEmail')?.hasError('required')
+          "
+        >
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Department Name</mat-label>
+        <input matInput type="text" formControlName="laboratoristDepartment" required/>
+        <mat-error
+          *ngIf="
+            laboratoristForm.get('laboratoristDepartment')?.touched &&
+            laboratoristForm.get('laboratoristDepartment')?.errors &&
+            laboratoristForm.get('laboratoristDepartment')?.hasError('required')
+          "
+        >
+          Department is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline" class="gender-options">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="laboratoristGender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="(
+        laboratoristForm.get('laboratoristGender')?.touched &&
+        laboratoristForm.get('laboratoristGender')?.errors &&
+        laboratoristForm.get('laboratoristGender')?.hasError('required')
+      )">
+        Gender is required
+      </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" formControlName="laboratoristAge" required />
+          <!-- <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <mat-error *ngIf="
+          laboratoristForm.get('laboratoristAge')?.touched &&
+          laboratoristForm.get('laboratoristAge')?.errors &&
+          laboratoristForm.get('laboratoristAge')?.hasError('required')
+          ">
+          Please enter your age
+        </mat-error>
+        <mat-error *ngIf="
+          laboratoristForm.get('laboratoristAge')?.touched &&
+          laboratoristForm.get('laboratoristAge')?.errors &&
+          laboratoristForm.get('laboratoristAge')?.hasError('max')
+          ">
+          Please enter a valid age
+        </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="bloodgroup-options">
+          <mat-label>Select Blood Group</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let bloodGroup of bloodGroups"
+              [value]="bloodGroup"
+            >
+              {{ bloodGroup }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="input-phone-group">
+        <mat-form-field class="phone-code-width" appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <mat-select formControlName="laboratoristCountryCode">
+            <mat-option *ngFor="let code of codes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              laboratoristForm.get('laboratoristCountryCode')?.touched &&
+              laboratoristForm.get('laboratoristCountryCode')?.errors &&
+              laboratoristForm.get('laboratoristCountryCode')?.hasError('required')
+            "
+          >
+            Code is required
+          </mat-error>
+        </mat-form-field>
+      <mat-form-field class="phone-width" appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input
+          matInput
+          type="tel"
+          required
+          formControlName="laboratoristPhoneNumber"
+        />
+        <mat-error
+          *ngIf="
+            laboratoristForm.get('laboratoristPhoneNumber')?.touched &&
+            laboratoristForm.get('laboratoristPhoneNumber')?.errors &&
+            laboratoristForm
+              .get('laboratoristPhoneNumber')
+              ?.hasError('required')
+          "
+        >
+          Phone Number is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            laboratoristForm.get('laboratoristPhoneNumber')?.touched &&
+            laboratoristForm.get('laboratoristPhoneNumber')?.errors &&
+            laboratoristForm
+              .get('laboratoristPhoneNumber')
+              ?.hasError('pattern')
+          "
+        >
+          Please enter a valid phone number
+        </mat-error>
+      </mat-form-field>
+    </div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="laboratoristAddress"
+        />
+        <mat-error
+          *ngIf="
+            laboratoristForm.get('laboratoristAddress')?.touched &&
+            laboratoristForm.get('laboratoristAddress')?.errors &&
+            laboratoristForm.get('laboratoristAddress')?.hasError('required')
+          "
+        >
+          Address is requried
+        </mat-error>
+      </mat-form-field>
+
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!laboratoristForm.valid"
+        >
+          Add Laboratorist
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/Laboratorist.avif'" alt="Laboratorist" />
+    </div>
+  </div>
+</div>

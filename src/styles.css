@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@use "node_modules/@ngneat/hot-toast/src/styles/styles.scss";
+:root {
+  --color-light-grey: #e1e5ea;
+  --color-medium-grey: #a6bbc6;
+  --color-white: #fff;
+  --color-light-red: #db808e;
+  --color-red: #fc2947;
+  --color-black: #333;
+  --color-blue: #354259;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans;
+}
+
+.full-width {
+  width: 100%;
+}
+.half-width {
+  width: 50%;
+}
+.phone-code-width {
+  width: 25%;
+}
+.phone-width {
+  width: 75%;
+}
+
+.submit-btn {
+  background-color: var(--color-blue) !important;
+  color: var(--color-white) !important;
+}
+.button-groups {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--color-light-grey);
+  padding: 20px;
+  border-radius: 5px;
+}
+.wrapper-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  background-color: var(--color-light-grey);
+  border-radius: 5px;
+}
+img {
+  border-radius: 5px;
+  width: 100%;
+}
+.input-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.input-group mat-form-field {
+  width: 32.25%;
+}
+.illustration-container {
+  margin: 15px;
+  width: 40%;
+}
+.illustration-container img {
+  border-radius: 5px;
+  width: 100%;
+  opacity: 90%;
+}
+.form-container {
+  width: 40%;
+  display: block;
+  margin: 160px auto;
+  padding: 48px;
+  border-radius: 16px;
+  align-items: center;
+}
+
+.form-container mat-form-field {
+  width: 80%;
+  display: flex;
+  align-items: center;
+}
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.margin-top {
+  margin-top: 16px;
+}
+.mat-mdc-table .mdc-data-table__header-row {
+  background-color: var(--color-light-grey);
+  font-weight: 500;
+}
+.active-tab {
+  background-color: var(--color-blue) !important;
+  color: var(--color-white) !important;
+}
+::ng-deep ::-webkit-scrollbar {
+  width: 5px !important;
+  background-color: var(--color-light-grey) !important;
+}
+
+::ng-deep ::-webkit-scrollbar-thumb {
+  background-color: var(--color-blue) !important;
+  border-radius: 5px;
+}
+.input-name-group {
+  display: flex;
+  gap: 20px;
+}
+.input-phone-group {
+  display: flex;
+  gap: 20px;
+}
+.two-field-input-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

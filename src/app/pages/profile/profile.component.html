@@ -1,0 +1,308 @@
+<div class="profile-container">
+  <!-- <div class="image-upload-container" *ngIf="user$ | async as user">
+    <img width="120" height="120" [src]="user.photoURL ?? 'assets/images/image-placeholder.png'" />
+    <button mat-mini-fab color="accent" (click)="inputField.click()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div> -->
+  <!-- <input type="file" hidden #inputField (change)="uploadImage($event, user$)" /> -->
+  <div class="upper-section-profile">
+  <div class="image-upload-container">
+    <img width="180" height="180" [src]="'assets/images/image-placeholder.png'" />
+  </div>
+  <form class="profile-form-container full-width" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <!-- Personal Details -->
+      <div class="personal-details-form">
+        <span class="personal-details-header">
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          <h2>Personal Details</h2>
+        </span>
+        <div formGroupName="personaldetails">
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>First Name</mat-label>
+          <input matInput  type="text" placeholder="George" formControlName="firstname" />
+          <mat-error class="error" *ngIf="(
+            profileForm.get('personaldetails')?.get('firstname')?.touched &&
+            profileForm.get('personaldetails')?.get('firstname')?.errors &&
+            profileForm.get('personaldetails')?.get('firstname')?.hasError('required') ||
+            profileForm.get('personaldetails')?.get('firstname')?.hasError('whitespace')
+          )">
+            First name is required
+          </mat-error>
+          <mat-error class="error" *ngIf="(
+            profileForm.get('personaldetails')?.get('firstname')?.touched &&
+            profileForm.get('personaldetails')?.get('firstname')?.errors &&
+            profileForm.get('personaldetails')?.get('firstname')?.hasError('minlength')
+          )">
+            First name must be at least three characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput class="lastname" type="text" placeholder="Smith" formControlName="lastname"  />
+          <mat-error class="error" *ngIf="(
+            profileForm.get('personaldetails')?.get('lastname')?.touched &&
+            profileForm.get('personaldetails')?.get('lastname')?.errors &&
+            profileForm.get('personaldetails')?.get('lastname')?.hasError('required')
+          )">
+            Last name  is required
+          </mat-error>
+          <mat-error class="error" *ngIf="(
+            profileForm.get('personaldetails')?.get('lastname')?.touched &&
+            profileForm.get('personaldetails')?.get('lastname')?.errors &&
+            profileForm.get('personaldetails')?.get('lastname')?.hasError('minlength')
+          )">
+            Last name must be greater than 3 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Age</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthday" >
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="(
+            profileForm.get('personaldetails')?.get('birthday')?.touched &&
+            profileForm.get('personaldetails')?.get('birthday')?.errors &&
+            profileForm.get('personaldetails')?.get('birthday')?.hasError
+          )">
+            Pick your birth date please
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="bloodgroup-options half-width">
+          <mat-label> Blood Group</mat-label>
+          <mat-select formControlName="bloodGroup" required>
+            <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup">
+              {{ bloodGroup }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="(
+            profileForm.get('personaldetails')?.get('bloodGroup')?.touched &&
+            profileForm.get('personaldetails')?.get('bloodGroup')?.errors &&
+            profileForm.get('personaldetails')?.get('bloodGroup')?.hasError
+          )">
+            Blood Group is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="gender-options half-width">
+          <mat-label> Gender</mat-label>
+          <mat-select formControlName="gender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="(
+            profileForm.get('personaldetails')?.get('gender')?.touched &&
+            profileForm.get('personaldetails')?.get('gender')?.errors &&
+            profileForm.get('personaldetails')?.get('gender')?.hasError('required')
+          )">
+            Gender is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="gender-options half-width">
+          <mat-label>Relationship Status</mat-label>
+          <mat-select formControlName="relation" required>
+            <mat-option *ngFor="let status of relationShip" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="(
+            profileForm.get('personaldetails')?.get('relation')?.touched &&
+            profileForm.get('personaldetails')?.get('relation')?.errors &&
+            profileForm.get('personaldetails')?.get('relation')?.hasError('required')
+          )">
+            Relationship status is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+      <!-- <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput class="email" type="email" placeholder="georgesmith@gmail.com" required/>
+      </mat-form-field> -->
+
+      <!-- <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Phone</mat-label>
+        <input matInput class="phone" type="tel" placeholder="Ex. 9875120154" required/>
+      </mat-form-field> -->
+
+
+
+    </div>
+    <!-- Contact Details -->
+    <div class="contact-details-form">
+      <span class="contact-details-header">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        <h2>Contact Details</h2>
+      </span>
+      <div formGroupName="contactdetails">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput class="address" type="text" placeholder="" formControlName="address"  />
+        <mat-error *ngIf="(
+          profileForm.get('contactdetails')?.get('address')?.touched &&
+          profileForm.get('contactdetails')?.get('address')?.errors &&
+          profileForm.get('contactdetails')?.get('address')?.hasError
+        )">
+          Address is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>City</mat-label>
+          <input matInput class="city" type="text" placeholder="" formControlName="city"  />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>State</mat-label>
+          <input matInput class="state" type="text" placeholder="" formControlName="state"  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('state')?.touched &&
+            profileForm.get('contactdetails')?.get('state')?.errors &&
+            profileForm.get('contactdetails')?.get('state')?.hasError('required')
+          )">
+            State is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Zip Code</mat-label>
+          <input matInput class="zip-code" type="text" placeholder="" formControlName="zipcode" minlength="6" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Country</mat-label>
+          <input matInput class="country" type="text" placeholder="" formControlName="country"  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('country')?.touched &&
+            profileForm.get('contactdetails')?.get('country')?.errors &&
+            profileForm.get('contactdetails')?.get('country')?.hasError('required')
+          )">
+            Country is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Cell Phone</mat-label>
+          <input matInput class="cellphone" type="tel" placeholder="" formControlName="cellphone" minlength="10"  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('cellphone')?.touched &&
+            profileForm.get('contactdetails')?.get('cellphone')?.errors &&
+            profileForm.get('contactdetails')?.get('cellphone')?.hasError('required')
+          )">
+            Cell Phone is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Emergency Contact Person Name</mat-label>
+          <input matInput class="emergency-contact-person" type="text" formControlName="emergencyPersonName" placeholder=""  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('emergencyPersonName')?.touched &&
+            profileForm.get('contactdetails')?.get('emergencyPersonName')?.errors &&
+            profileForm.get('contactdetails')?.get('emergencyPersonName')?.hasError('required')
+          )">
+            Emergency Contact Person is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Emergency Contact</mat-label>
+          <input matInput class="emergency-contact-number" type="tel" placeholder="" formControlName="emergencyContact" minlength="10"  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('emergencyContact')?.touched &&
+            profileForm.get('contactdetails')?.get('emergencyContact')?.errors &&
+            profileForm.get('contactdetails')?.get('emergencyContact')?.hasError('required')
+          )">
+            Emergency Contact Person's number is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Emergency Contact Person Relation</mat-label>
+          <input matInput class="emergency-contact-person-relation" type="text" placeholder="" formControlName="emergencyContactRelation"  />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('emergencyContactRelation')?.touched &&
+            profileForm.get('contactdetails')?.get('emergencyContactRelation')?.errors &&
+            profileForm.get('contactdetails')?.get('emergencyContactRelation')?.hasError('required')
+          )">
+            Emergency Contact Person's relation is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Phone</mat-label>
+          <input matInput class="phone" type="tel" placeholder="" formControlName="phone" minlength="10" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Fax</mat-label>
+          <input matInput class="fax" type="text" placeholder="" formControlName="fax"/>
+        </mat-form-field>
+      </div>
+
+      <div class="two-fields">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput class="email-address" type="email" placeholder="" formControlName="email" />
+          <mat-error *ngIf="(
+            profileForm.get('contactdetails')?.get('email')?.touched &&
+            profileForm.get('contactdetails')?.get('email')?.errors &&
+            profileForm.get('contactdetails')?.get('email')?.hasError('required')
+          )">
+            Email Address is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Secondary Email</mat-label>
+          <input matInput class="secondary-email" type="text" placeholder="" formControlName="secondaryemail"/>
+        </mat-form-field>
+      </div>
+    </div>
+    </div>
+    <div class="button-groups">
+      <button mat-raised-button class="submit-btn" type="submit" [disabled]="!profileForm.valid">Submit</button>
+      <button mat-raised-button color="warn" type="button" (click)="resetForm()">Reset</button>
+    </div>
+    </form>
+
+  </div>
+
+  <!-- <div class="lower-section-profile">
+    <form class="password-form">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Current password</mat-label>
+        <input matInput class="current-password" type="password" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>New password</mat-label>
+        <input matInput class="new-password" type="password" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Confirm password</mat-label>
+        <input matInput class="confirm-password" type="password" />
+      </mat-form-field>
+    </form>
+  </div> -->
+</div>

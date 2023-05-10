@@ -1,0 +1,210 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="deathRecordForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Birth Child Name -->
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Dead Person Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="deadPersonFirstName"
+          />
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('deadPersonFirstName')?.touched &&
+              deathRecordForm.get('deadPersonFirstName')?.errors &&
+              deathRecordForm.get('deadPersonFirstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('deadPersonFirstName')?.touched &&
+              deathRecordForm.get('deadPersonFirstName')?.errors &&
+              deathRecordForm.get('deadPersonFirstName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="deadPersonLastName"
+          />
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('deadPersonLastName')?.touched &&
+              deathRecordForm.get('deadPersonLastName')?.errors &&
+              deathRecordForm.get('deadPersonLastName')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('deadPersonLastName')?.touched &&
+              deathRecordForm.get('deadPersonLastName')?.errors &&
+              deathRecordForm.get('deadPersonLastName')?.hasError('minlength')
+            "
+          >
+            Last Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="gender-options half-width">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="Gender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('Gender')?.touched &&
+              deathRecordForm.get('Gender')?.errors &&
+              deathRecordForm.get('Gender')?.hasError('required')
+            "
+          >
+            Gender selection is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Patient ID</mat-label>
+          <input matInput type="text" required formControlName="patientId" />
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('patientId')?.touched &&
+              deathRecordForm.get('patientId')?.errors &&
+              deathRecordForm.get('patientId')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('patientId')?.touched &&
+              deathRecordForm.get('patientId')?.errors &&
+              deathRecordForm.get('patientId')?.hasError('minlength')
+            "
+          >
+            Last Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Birth Date</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('birthDate')?.touched &&
+              deathRecordForm.get('birthDate')?.errors &&
+              deathRecordForm.get('birthDate')?.hasError('required')
+            "
+          >
+            Please enter birth date
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              deathRecordForm.get('birthDate')?.touched &&
+              deathRecordForm.get('birthDate')?.errors &&
+              deathRecordForm.get('birthDate')?.hasError('max')
+            "
+          >
+            Please enter a valid birth date
+          </mat-error> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Death Date</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="deathDatepicker"
+            formControlName="deathDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="deathDatepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #deathDatepicker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              deathRecordForm.get('deathDate')?.touched &&
+              deathRecordForm.get('deathDate')?.errors &&
+              deathRecordForm.get('deathDate')?.hasError('required')
+            "
+          >
+            Please enter death date
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              deathRecordForm.get('deathDate')?.touched &&
+              deathRecordForm.get('deathDate')?.errors &&
+              deathRecordForm.get('deathDate')?.hasError('max')
+            "
+          >
+            Please enter a valid death date
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cause of Death</mat-label>
+        <input matInput formControlName="causeOfDeath" required />
+        <mat-error
+          *ngIf="
+            deathRecordForm.get('causeOfDeath')?.touched &&
+            deathRecordForm.get('causeOfDeath')?.errors &&
+            deathRecordForm.get('causeOfDeath')?.hasError('required')
+          "
+        >
+          Please enter death date
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!deathRecordForm.valid"
+        >
+          Add Death Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <!-- <div class="illustration-container">
+      <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
+    </div> -->
+  </div>
+</div>

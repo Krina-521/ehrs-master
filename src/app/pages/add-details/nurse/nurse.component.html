@@ -1,0 +1,184 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="wrapper-container">
+  <form class="half-width" [formGroup]="nurseForm" (ngSubmit)="onSubmit()">
+    <div class="input-name-group">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" required formControlName="nurseFirstName"/>
+      <mat-error *ngIf="(
+        nurseForm.get('nurseFirstName')?.touched &&
+        nurseForm.get('nurseFirstName')?.errors &&
+        nurseForm.get('nurseFirstName')?.hasError('required')
+      )">
+        First Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        nurseForm.get('nurseFirstName')?.touched &&
+        nurseForm.get('nurseFirstName')?.errors &&
+        nurseForm.get('nurseFirstName')?.hasError('minlength')
+      )">
+        First Name must be of more than 3 characters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" required formControlName="nurseLastName"/>
+      <mat-error *ngIf="(
+        nurseForm.get('nurseLastName')?.touched &&
+        nurseForm.get('nurseLastName')?.errors &&
+        nurseForm.get('nurseLastName')?.hasError('required')
+      )">
+        Last Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        nurseForm.get('nurseLastName')?.touched &&
+        nurseForm.get('nurseLastName')?.errors &&
+        nurseForm.get('nurseLastName')?.hasError('minlength')
+      )">
+        Last Name must be of more than 3 characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" formControlName="nurseEmail" required />
+      <mat-error *ngIf="(
+        nurseForm.get('nurseEmail')?.touched &&
+        nurseForm.get('nurseEmail')?.errors &&
+        nurseForm.get('nurseEmail')?.hasError('required')
+      )">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Department Name</mat-label>
+      <input matInput type="text" formControlName="nurseDepartment" required />
+      <mat-error *ngIf="(
+        nurseForm.get('nurseDepartment')?.touched &&
+        nurseForm.get('nurseDepartment')?.errors &&
+        nurseForm.get('nurseDepartment')?.hasError('required')
+      )">
+        Department is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="input-group">
+      <mat-form-field appearance="outline" class="gender-options">
+        <mat-label>Select Gender</mat-label>
+        <mat-select formControlName="nurseGender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        nurseForm.get('nurseGender')?.touched &&
+        nurseForm.get('nurseGender')?.errors &&
+        nurseForm.get('nurseGender')?.hasError('required')
+      )">
+        Gender is required
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="nurseAge" required />
+        <!-- <input matInput [matDatepicker]="picker" formControlName="nurseAge">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <mat-error *ngIf="(
+          nurseForm.get('nurseAge')?.touched &&
+          nurseForm.get('nurseAge')?.errors &&
+          nurseForm.get('nurseAge')?.hasError('required')
+        )">
+        Please enter your age
+        </mat-error>
+        <mat-error *ngIf="(
+          nurseForm.get('nurseAge')?.touched &&
+          nurseForm.get('nurseAge')?.errors &&
+          nurseForm.get('nurseAge')?.hasError('max')
+        )">
+        Please enter a valid age
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="bloodgroup-options">
+        <mat-label>Select Blood Group</mat-label>
+        <mat-select formControlName="nurseBloodGroup">
+          <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup">
+            {{ bloodGroup }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        nurseForm.get('nurseBloodGroup')?.touched &&
+        nurseForm.get('nurseBloodGroup')?.errors &&
+        nurseForm.get('nurseBloodGroup')?.hasError('required')
+      )">
+        Blood Group is required
+      </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-phone-group">
+      <mat-form-field class="phone-code-width" appearance="outline">
+        <mat-label>Country Code</mat-label>
+        <mat-select formControlName="nurseCountryCode">
+          <mat-option *ngFor="let code of codes" [value]="code">
+            {{ code }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            nurseForm.get('nurseCountryCode')?.touched &&
+            nurseForm.get('nurseCountryCode')?.errors &&
+            nurseForm.get('nurseCountryCode')?.hasError('required')
+          "
+        >
+          Code is required
+        </mat-error>
+      </mat-form-field>
+    <mat-form-field class="phone-width" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput type="tel" required formControlName="nursePhoneNumber" />
+      <mat-error *ngIf="(
+        nurseForm.get('nursePhoneNumber')?.touched &&
+        nurseForm.get('nursePhoneNumber')?.errors &&
+        nurseForm.get('nursePhoneNumber')?.hasError('required')
+      )">
+        Phone Number is required
+      </mat-error>
+      <mat-error *ngIf="(
+        nurseForm.get('nursePhoneNumber')?.touched &&
+        nurseForm.get('nursePhoneNumber')?.errors &&
+        nurseForm.get('nursePhoneNumber')?.hasError('pattern')
+      )">
+        Please enter a valid phone number
+      </mat-error>
+    </mat-form-field>
+    </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" required formControlName="nurseAddress" />
+      <mat-error *ngIf="(
+        nurseForm.get('nurseAddress')?.touched &&
+        nurseForm.get('nurseAddress')?.errors &&
+        nurseForm.get('nurseAddress')?.hasError('required')
+      )">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-groups">
+      <button mat-raised-button class="submit-btn" [disabled]="!nurseForm.valid">Add Nurse</button>
+      <button mat-raised-button color="warn" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+  <div class="illustration-container">
+    <img [src]="'assets/images/Nurse.avif'" alt="Nurse" />
+    </div>
+    </div>
+</div>

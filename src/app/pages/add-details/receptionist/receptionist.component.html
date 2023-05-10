@@ -1,0 +1,185 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="wrapper-container">
+  <form class="half-width" [formGroup]="receptionistForm" (ngSubmit)="onSubmit()">
+    <div class="input-name-group">
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" required formControlName="receptionistFirstName"/>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistFirstName')?.touched &&
+        receptionistForm.get('receptionistFirstName')?.errors &&
+        receptionistForm.get('receptionistFirstName')?.hasError('required')
+      )">
+        First Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistFirstName')?.touched &&
+        receptionistForm.get('receptionistFirstName')?.errors &&
+        receptionistForm.get('receptionistFirstName')?.hasError('minlength')
+      )">
+        First Name must be of 3 or more characters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" required formControlName="receptionistFirstName"/>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistFirstName')?.touched &&
+        receptionistForm.get('receptionistFirstName')?.errors &&
+        receptionistForm.get('receptionistFirstName')?.hasError('required')
+      )">
+        First Name is required
+      </mat-error>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistFirstName')?.touched &&
+        receptionistForm.get('receptionistFirstName')?.errors &&
+        receptionistForm.get('receptionistFirstName')?.hasError('minlength')
+      )">
+        First Name must be of 3 or more characters
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" required formControlName="receptionistEmail" />
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistEmail')?.touched &&
+        receptionistForm.get('receptionistEmail')?.errors &&
+        receptionistForm.get('receptionistEmail')?.hasError('required')
+      )">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Department Name </mat-label>
+      <input matInput type="text" formControlName="receptionistDepartment" required />
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistDepartment')?.touched &&
+        receptionistForm.get('receptionistDepartment')?.errors &&
+        receptionistForm.get('receptionistDepartment')?.hasError('required')
+      )">
+        Department is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="input-group">
+      <mat-form-field appearance="outline" class="gender-options">
+        <mat-label>Select Gender</mat-label>
+        <mat-select formControlName="receptionistGender">
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        receptionistForm.get('receptionistGender')?.touched &&
+        receptionistForm.get('receptionistGender')?.errors &&
+        receptionistForm.get('receptionistGender')?.hasError('required')
+      )">
+        Gender is required
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="receptionistAge" required/>
+        <!-- <input matInput [matDatepicker]="picker" formControlName="receptionistAge">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <mat-error *ngIf="(
+        receptionistForm.get('receptionistAge')?.touched &&
+        receptionistForm.get('receptionistAge')?.errors &&
+        receptionistForm.get('receptionistAge')?.hasError('required')
+      )">
+        Please enter your age
+      </mat-error>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistAge')?.touched &&
+        receptionistForm.get('receptionistAge')?.errors &&
+        receptionistForm.get('receptionistAge')?.hasError('max')
+      )">
+        Please enter a valid age
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="bloodgroup-options">
+        <mat-label>Select Blood Group</mat-label>
+        <mat-select formControlName="receptionistBloodGroup">
+          <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup">
+            {{ bloodGroup }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="(
+        receptionistForm.get('receptionistBloodGroup')?.touched &&
+        receptionistForm.get('receptionistBloodGroup')?.errors &&
+        receptionistForm.get('receptionistBloodGroup')?.hasError('required')
+      )">
+        Blood Group is required
+      </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="input-phone-group">
+      <mat-form-field class="phone-code-width" appearance="outline">
+        <mat-label>Country Code</mat-label>
+        <mat-select formControlName="receptionistCountryCode">
+          <mat-option *ngFor="let code of codes" [value]="code">
+            {{ code }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            receptionistForm.get('receptionistCountryCode')?.touched &&
+            receptionistForm.get('receptionistCountryCode')?.errors &&
+            receptionistForm.get('receptionistCountryCode')?.hasError('required')
+          "
+        >
+          Code is required
+        </mat-error>
+      </mat-form-field>
+    <mat-form-field class="phone-width" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput type="tel" required formControlName="receptionistPhoneNumber" />
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistPhoneNumber')?.touched &&
+        receptionistForm.get('receptionistPhoneNumber')?.errors &&
+        receptionistForm.get('receptionistPhoneNumber')?.hasError('required')
+      )">
+        Phone Number is required
+      </mat-error>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistPhoneNumber')?.touched &&
+        receptionistForm.get('receptionistPhoneNumber')?.errors &&
+        receptionistForm.get('receptionistPhoneNumber')?.hasError('pattern')
+      )">
+        Please enter a valid phone number
+      </mat-error>
+    </mat-form-field>
+    </div>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Address</mat-label>
+      <input matInput type="text" required  formControlName="receptionistAddress"/>
+      <mat-error *ngIf="(
+        receptionistForm.get('receptionistAddress')?.touched &&
+        receptionistForm.get('receptionistAddress')?.errors &&
+        receptionistForm.get('receptionistAddress')?.hasError('required')
+      )">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-groups">
+      <button mat-raised-button class="submit-btn" [disabled]="!receptionistForm.valid">Add Accountant</button>
+      <button mat-raised-button color="warn" (click)="onReset()">Reset</button>
+    </div>
+  </form>
+  <div class="illustration-container">
+    <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
+    </div>
+</div>
+</div>

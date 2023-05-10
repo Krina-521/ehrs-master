@@ -1,0 +1,17 @@
+.main-container{
+  display: flex;
+  flex-direction: row;
+}
+.side-conainter{
+  width: 100%;
+  padding: 10px;
+  display: flew;
+  flex-direction: column;
+  margin-left: 250px;
+}
+/* .app-header-container{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: var(--color-light-grey);
+} */

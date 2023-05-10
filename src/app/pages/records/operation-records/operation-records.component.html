@@ -1,0 +1,258 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="operationRecordForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Patient ID</mat-label>
+          <input matInput type="text" required formControlName="patientId" />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientId')?.touched &&
+              operationRecordForm.get('patientId')?.errors &&
+              operationRecordForm.get('patientId')?.hasError('required')
+            "
+          >
+            Patient ID is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientId')?.touched &&
+              operationRecordForm.get('patientId')?.errors &&
+              operationRecordForm.get('patientId')?.hasError('minlength')
+            "
+          >
+            Patient must be of 5 or more characters
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Operated By</mat-label>
+          <input matInput type="text" required formControlName="operatedBy" />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('operatedBy')?.touched &&
+              operationRecordForm.get('operatedBy')?.errors &&
+              operationRecordForm.get('operatedBy')?.hasError('required')
+            "
+          >
+            Operated By field is required
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              operationRecordForm.get('operatedBy')?.touched &&
+              operationRecordForm.get('operatedBy')?.errors &&
+              operationRecordForm
+                .get('operatedBy')
+                ?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Patient First Name</mat-label>
+          <input matInput formControlName="patientFirstName" required />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientFirstName')?.touched &&
+              operationRecordForm.get('patientFirstName')?.errors &&
+              operationRecordForm.get('patientFirstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientFirstName')?.touched &&
+              operationRecordForm.get('patientFirstName')?.errors &&
+              operationRecordForm.get('patientFirstName')?.hasError('minlength')
+            "
+          >
+            First Name must be 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Patient Last Name</mat-label>
+          <input matInput formControlName="patientFirstName" required />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientLastName')?.touched &&
+              operationRecordForm.get('patientLastName')?.errors &&
+              operationRecordForm.get('patientLastName')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientLastName')?.touched &&
+              operationRecordForm.get('patientLastName')?.errors &&
+              operationRecordForm.get('patientLastName')?.hasError('minlength')
+            "
+          >
+            Last Name must be 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Patient Age</mat-label>
+          <input matInput formControlName="patientAge" required />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientAge')?.touched &&
+              operationRecordForm.get('patientAge')?.errors &&
+              operationRecordForm.get('patientAge')?.hasError('required')
+            "
+          >
+            Patient Age is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientAge')?.touched &&
+              operationRecordForm.get('patientAge')?.errors &&
+              operationRecordForm.get('patientAge')?.hasError('max')
+            "
+          >
+            Please enter a valid age
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="gender-options half-width">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="patientGender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('patientGender')?.touched &&
+              operationRecordForm.get('patientGender')?.errors &&
+              operationRecordForm.get('patientGender')?.hasError('required')
+            "
+          >
+            Gender selection is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Operation For</mat-label>
+          <input
+            matInput
+            type="email"
+            required
+            formControlName="operationFor"
+          />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('operationFor')?.touched &&
+              operationRecordForm.get('operationFor')?.errors &&
+              operationRecordForm.get('operationFor')?.hasError('required')
+            "
+          >
+            Operation for field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Operation Duration in hours</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="operationDuration"
+            required
+          />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('operationDuration')?.touched &&
+              operationRecordForm.get('operationDuration')?.errors &&
+              operationRecordForm.get('operationDuration')?.hasError('required')
+            "
+          >
+            Operation duration is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Operation started at (time)</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="operationTime"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('operationTime')?.touched &&
+              operationRecordForm.get('operationTime')?.errors &&
+              operationRecordForm.get('operationTime')?.hasError('required')
+            "
+          >
+            Please enter operation time
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Medication</mat-label>
+          <input matInput formControlName="medication" />
+          <mat-error
+            *ngIf="
+              operationRecordForm.get('medication')?.touched &&
+              operationRecordForm.get('medication')?.errors &&
+              operationRecordForm.get('medication')?.hasError('required')
+            "
+          >
+            Please enter medication details
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Other Details on Operation</mat-label>
+        <textarea matInput formControlName="otherDetails" required></textarea>
+        <mat-error
+          *ngIf="
+            operationRecordForm.get('otherDetails')?.touched &&
+            operationRecordForm.get('otherDetails')?.errors &&
+            operationRecordForm.get('otherDetails')?.hasError('required')
+          "
+        ></mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!operationRecordForm.valid"
+        >
+          Add Operation Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <!-- <div class="illustration-container">
+      <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
+    </div> -->
+  </div>
+</div>

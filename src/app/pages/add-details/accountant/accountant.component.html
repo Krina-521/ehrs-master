@@ -1,0 +1,252 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form class="half-width" [formGroup]="accountantForm" (ngSubmit)="onSubmit()">
+      <div class="input-name-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="accountantFirstName"
+          />
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantFirstName')?.touched &&
+              accountantForm.get('accountantFirstName')?.errors &&
+              accountantForm.get('accountantFirstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantFirstName')?.touched &&
+              accountantForm.get('accountantFirstName')?.errors &&
+              accountantForm.get('accountantFirstName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="accountantLastName"
+          />
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantLastName')?.touched &&
+              accountantForm.get('accountantLastName')?.errors &&
+              accountantForm.get('accountantLastName')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantLastName')?.touched &&
+              accountantForm.get('accountantLastName')?.errors &&
+              accountantForm.get('accountantLastName')?.hasError('minlength')
+            "
+          >
+            Last Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input
+          matInput
+          type="email"
+          required
+          formControlName="accountantEmail"
+        />
+        <mat-error
+          *ngIf="
+            accountantForm.get('accountantEmail')?.touched &&
+            accountantForm.get('accountantEmail')?.errors &&
+            accountantForm.get('accountantEmail')?.hasError('required')
+          "
+        >
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Department Name</mat-label>
+        <input matInput type="text" formControlName="accountantDepartment" required/>
+        <mat-error *ngIf="(
+        accountantForm.get('accountantDepartment')?.touched &&
+        accountantForm.get('accountantDepartment')?.errors &&
+        accountantForm.get('accountantDepartment')?.hasError('required')
+      )">
+        Department is required
+      </mat-error>
+      </mat-form-field>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline" class="gender-options">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="accountantGender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantGender')?.touched &&
+              accountantForm.get('accountantGender')?.errors &&
+              accountantForm.get('accountantGender')?.hasError('required')
+            "
+          >
+            Gender is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input matInput type="number" formControlName="accountantAge" />
+          <!-- <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="accountantAge"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker> -->
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantAge')?.touched &&
+              accountantForm.get('accountantAge')?.errors &&
+              accountantForm.get('accountantAge')?.hasError('required')
+            "
+          >
+            Please enter your age
+          </mat-error>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantAge')?.touched &&
+              accountantForm.get('accountantAge')?.errors &&
+              accountantForm.get('accountantAge')?.hasError('max')
+            "
+          >
+            Please enter a valid age
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="bloodgroup-options">
+          <mat-label>Select Blood Group</mat-label>
+          <mat-select formControlName="accountantBloodGroup">
+            <mat-option
+              *ngFor="let bloodGroup of bloodGroups"
+              [value]="bloodGroup"
+            >
+              {{ bloodGroup }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantBloodGroup')?.touched &&
+              accountantForm.get('accountantBloodGroup')?.errors &&
+              accountantForm.get('accountantBloodGroup')?.hasError('required')
+            "
+          >
+            Blood Group is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-phone-group">
+        <mat-form-field class="phone-code-width" appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <mat-select formControlName="accountantCountryCode">
+            <mat-option *ngFor="let code of codes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              accountantForm.get('accountantCountryCode')?.touched &&
+              accountantForm.get('accountantCountryCode')?.errors &&
+              accountantForm.get('accountantCountryCode')?.hasError('required')
+            "
+          >
+            Code is required
+          </mat-error>
+        </mat-form-field>
+      <mat-form-field class="phone-width" appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input
+          matInput
+          type="tel"
+          required
+          formControlName="accountantPhoneNumber"
+        />
+        <mat-error
+          *ngIf="
+            accountantForm.get('accountantPhoneNumber')?.touched &&
+            accountantForm.get('accountantPhoneNumber')?.errors &&
+            accountantForm.get('accountantPhoneNumber')?.hasError('required')
+          "
+        >
+          Phone Number is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            accountantForm.get('accountantPhoneNumber')?.touched &&
+            accountantForm.get('accountantPhoneNumber')?.errors &&
+            accountantForm.get('accountantPhoneNumber')?.hasError('pattern')
+          "
+        >
+          Please enter a valid phone number
+        </mat-error>
+      </mat-form-field>
+    </div>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="accountantAddress"
+        />
+        <mat-error
+          *ngIf="
+            accountantForm.get('accountantAddress')?.touched &&
+            accountantForm.get('accountantAddress')?.errors &&
+            accountantForm.get('accountantAddress')?.hasError('required')
+          "
+        >
+          Address is required
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!accountantForm.valid"
+        >
+          Add Accountant
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
+    </div>
+  </div>
+</div>

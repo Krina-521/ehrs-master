@@ -1,0 +1,36 @@
+<div class="records-container">
+  <form>
+    <mat-form-field appearance="fill" class="details-options">
+      <mat-label>Select option to add details</mat-label>
+      <mat-select (valueChange)="onSelection($event)">
+        <mat-option *ngFor="let detail of details" [value]="detail.value">
+          {{ detail.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div [ngSwitch]="selectedOption">
+    <!-- Department -->
+    <div *ngSwitchDefault>
+      <app-birth-records [title]="details[0].viewValue"></app-birth-records>
+    </div>
+    <!-- Doctor -->
+    <div *ngSwitchCase="'death-records'">
+      <app-death-records [title]="details[1].viewValue"></app-death-records>
+    </div>
+    <!-- Patients -->
+    <div *ngSwitchCase="'operation-records'">
+      <app-operation-records
+        [title]="details[2].viewValue"
+      ></app-operation-records>
+    </div>
+    <!-- Nurse -->
+    <div *ngSwitchCase="'health-records'">
+      <app-health-records [title]="details[3].viewValue"></app-health-records>
+    </div>
+    <!-- Pharmacist -->
+    <div *ngSwitchCase="'medical-records'">
+      <app-medical-records [title]="details[4].viewValue"></app-medical-records>
+    </div>
+  </div>
+</div>

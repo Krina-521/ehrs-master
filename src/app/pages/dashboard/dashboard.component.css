@@ -1,0 +1,57 @@
+.dashboard-container {
+  display: block;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+/* .Header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 4em;
+    width: 100%;
+    border-bottom: 1px solid var(--color-light-grey);
+  } */
+.body-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 2.5em 1em;
+  grid-auto-rows: minmax(100px, auto);
+  /* border: 1px solid grey; */
+}
+.tile {
+  /* grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: 2;
+     */
+  /* border: 1px solid grey; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-bottom: 5px solid var(--color-blue);
+}
+/* .tile-one img,
+.tile-two img,
+.tile-three img,
+.tile-four img,
+.tile-five img,
+.tile-six img,
+.tile-seven img,
+.tile-eight img,
+.tile-nine img,
+.tile-ten img,
+.tile-eleven img,
+.tile-twelve img {
+  height: 10px;
+} */
+img{
+  height: 9rem;
+}
+.calendar-container{
+  margin-top: 20px;
+}

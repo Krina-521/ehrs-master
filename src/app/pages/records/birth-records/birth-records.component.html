@@ -1,0 +1,307 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="birthRecordForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Birth Child Name -->
+      <div class="two-field-input-group">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Birth Child First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="birthChildFirstName"
+          />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthChildFirstName')?.touched &&
+              birthRecordForm.get('birthChildFirstName')?.errors &&
+              birthRecordForm.get('birthChildFirstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthChildFirstName')?.touched &&
+              birthRecordForm.get('birthChildFirstName')?.errors &&
+              birthRecordForm.get('birthChildFirstName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="birthChildLastName"
+          />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthChildLastName')?.touched &&
+              birthRecordForm.get('birthChildLastName')?.errors &&
+              birthRecordForm.get('birthChildLastName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthChildLastName')?.touched &&
+              birthRecordForm.get('birthChildLastName')?.errors &&
+              birthRecordForm.get('birthChildLastName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="gender-options half-width">
+          <mat-label>Select Gender</mat-label>
+          <mat-select formControlName="birthGender" required>
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthGender')?.touched &&
+              birthRecordForm.get('birthGender')?.errors &&
+              birthRecordForm.get('birthGender')?.hasError('required')
+            "
+          >
+            Gender selection is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Patient ID</mat-label>
+          <input matInput type="text" required formControlName="patientId" />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('patientId')?.touched &&
+              birthRecordForm.get('patientId')?.errors &&
+              birthRecordForm.get('patientId')?.hasError('required')
+            "
+          >
+            Last Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('patientId')?.touched &&
+              birthRecordForm.get('patientId')?.errors &&
+              birthRecordForm.get('patientId')?.hasError('minlength')
+            "
+          >
+            Last Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Mother Name</mat-label>
+          <input matInput type="email" required formControlName="motherName" />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('motherName')?.touched &&
+              birthRecordForm.get('motherName')?.errors &&
+              birthRecordForm.get('motherName')?.hasError('required')
+            "
+          >
+            Mother name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Father Name</mat-label>
+          <input matInput type="text" formControlName="fatherName" required />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('fatherName')?.touched &&
+              birthRecordForm.get('fatherName')?.errors &&
+              birthRecordForm.get('fatherName')?.hasError('required')
+            "
+          >
+            Father name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Birth Date</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthDate')?.touched &&
+              birthRecordForm.get('birthDate')?.errors &&
+              birthRecordForm.get('birthDate')?.hasError('required')
+            "
+          >
+            Please enter birth date
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              birthRecordForm.get('birthDate')?.touched &&
+              birthRecordForm.get('birthDate')?.errors &&
+              birthRecordForm.get('birthDate')?.hasError('max')
+            "
+          >
+            Please enter a valid birth date
+          </mat-error> -->
+        </mat-form-field>
+        <!-- <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [(ngModel)]="event.start"
+            (ngModelChange)="refresh.next($event)"
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            dateFormat="Y-m-dTH:i"
+            altFormat="F j, Y H:i"
+            placeholder="Not set"
+          /> -->
+        <!-- <div class="card flex justify-content-center half-width">
+            <p-calendar [(ngModel)]="date" [showTime]="true" [showSeconds]="true" [showIcon]="true"></p-calendar>
+        </div> -->
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Weight in kg</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="birthWeight"
+            required
+          />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthWeight')?.touched &&
+              birthRecordForm.get('birthWeight')?.errors &&
+              birthRecordForm.get('birthWeight')?.hasError('required')
+            "
+          >
+            Weight is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthWeight')?.touched &&
+              birthRecordForm.get('birthWeight')?.errors &&
+              birthRecordForm.get('birthWeight')?.hasError('max')
+            "
+          >
+            Please enter a valid weight
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Height in cm</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="birthHeight"
+            required
+          />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthHeight')?.touched &&
+              birthRecordForm.get('birthHeight')?.errors &&
+              birthRecordForm.get('birthHeight')?.hasError('required')
+            "
+          >
+            Height is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthHeight')?.touched &&
+              birthRecordForm.get('birthHeight')?.errors &&
+              birthRecordForm.get('birthHeight')?.hasError('max')
+            "
+          >
+            Please enter a valid height
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Born Status</mat-label>
+          <mat-select
+            formControlName="birthStatus"
+            [(ngModel)]="selectedStatus"
+            required
+          >
+            <mat-option
+              *ngFor="let status of birthStatusOption"
+              [value]="status"
+            >
+              {{ status }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthStatus')?.touched &&
+              birthRecordForm.get('birthStatus')?.errors &&
+              birthRecordForm.get('birthStatus')?.hasError('required')
+            "
+          >
+            Need to select one appropriate option
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Operation ID</mat-label>
+          <input matInput formControlName="operationId" required />
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('operationId')?.touched &&
+              birthRecordForm.get('operationId')?.errors &&
+              birthRecordForm.get('operationId')?.hasError('required')
+            "
+          >
+            Operation ID is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!birthRecordForm.valid"
+        >
+          Add Birth Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <!-- <div class="illustration-container">
+      <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
+    </div> -->
+  </div>
+</div>
