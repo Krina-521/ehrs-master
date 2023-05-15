@@ -1,0 +1,277 @@
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>Blood Donor</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="bloodDonorForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="two-field-input-group">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" required formControlName="firstName" />
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('firstName')?.touched &&
+              bloodDonorForm.get('firstName')?.errors &&
+              bloodDonorForm.get('firstName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('firstName')?.touched &&
+              bloodDonorForm.get('firstName')?.errors &&
+              bloodDonorForm.get('firstName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" required formControlName="lastName" />
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('lastName')?.touched &&
+              bloodDonorForm.get('lastName')?.errors &&
+              bloodDonorForm.get('lastName')?.hasError('required')
+            "
+          >
+            First Name is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('lastName')?.touched &&
+              bloodDonorForm.get('lastName')?.errors &&
+              bloodDonorForm.get('lastName')?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-group">
+        <mat-form-field appearance="outline" class="gender-options">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender">
+              {{ gender }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('gender')?.touched &&
+              bloodDonorForm.get('gender')?.errors &&
+              bloodDonorForm.get('gender')?.hasError('required')
+            "
+          >
+            Gender selection is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="bloodgroup-options">
+          <mat-label>Blood Group</mat-label>
+          <mat-select formControlName="bloodGroup">
+            <mat-option
+              *ngFor="let bloodGroup of bloodGroups"
+              [value]="bloodGroup"
+            >
+              {{ bloodGroup }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('bloodGroup')?.touched &&
+              bloodDonorForm.get('bloodGroup')?.errors &&
+              bloodDonorForm.get('bloodGroup')?.hasError('required')
+            "
+          >
+            Blood Group is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="birthDate">
+          <mat-label>Birth Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="birthDate"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('birthDate')?.touched &&
+              bloodDonorForm.get('birthDate')?.errors &&
+              bloodDonorForm.get('birthDate')?.hasError('required')
+            "
+          >
+            BirthDate is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-phone-group">
+        <mat-form-field class="phone-code-width" appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <mat-select formControlName="countryCode">
+            <mat-option *ngFor="let code of codes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('countryCode')?.touched &&
+              bloodDonorForm.get('countryCode')?.errors &&
+              bloodDonorForm.get('countryCode')?.hasError('required')
+            "
+          >
+            Code is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="phone-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="tel" formControlName="phoneNo" />
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('phoneNo')?.touched &&
+              bloodDonorForm.get('phoneNo')?.errors &&
+              bloodDonorForm.get('phoneNo')?.hasError('required')
+            "
+          >
+            Phone is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('phoneNo')?.touched &&
+              bloodDonorForm.get('phoneNo')?.errors &&
+              bloodDonorForm.get('phoneNo')?.hasError('pattern')
+            "
+          >
+            Please enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Weight in kg</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="birthWeight"
+            required
+          />
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('birthWeight')?.touched &&
+              bloodDonorForm.get('birthWeight')?.errors &&
+              bloodDonorForm.get('birthWeight')?.hasError('required')
+            "
+          >
+            Weight is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('birthWeight')?.touched &&
+              bloodDonorForm.get('birthWeight')?.errors &&
+              bloodDonorForm.get('birthWeight')?.hasError('max')
+            "
+          >
+            Please enter a valid weight
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Height in cm</mat-label>
+          <input matInput type="number" formControlName="height" required />
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('height')?.touched &&
+              bloodDonorForm.get('height')?.errors &&
+              bloodDonorForm.get('height')?.hasError('required')
+            "
+          >
+            Height is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              bloodDonorForm.get('height')?.touched &&
+              bloodDonorForm.get('height')?.errors &&
+              bloodDonorForm.get('height')?.hasError('max')
+            "
+          >
+            Please enter a valid height
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Last time blood donated</mat-label>
+        <input
+          matInput
+          [matDatepicker]="lastpicker"
+          formControlName="lastTimeDonated"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="lastpicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #lastpicker></mat-datepicker>
+        <mat-error
+          *ngIf="
+            bloodDonorForm.get('lastTimeDonated')?.touched &&
+            bloodDonorForm.get('lastTimeDonated')?.errors &&
+            bloodDonorForm.get('lastTimeDonated')?.hasError('required')
+          "
+        >
+          BirthDate is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Health History</mat-label>
+        <textarea
+          matInput
+          type="text"
+          formControlName="healthHistory"
+          required
+        ></textarea>
+        <mat-error
+          *ngIf="
+            bloodDonorForm.get('healthHistory')?.touched &&
+            bloodDonorForm.get('healthHistory')?.errors &&
+            bloodDonorForm.get('healthHistory')?.hasError('required')
+          "
+        >
+          Height is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!bloodDonorForm.valid"
+        >
+          Add Blood Donor Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/bloodDonor.avif'" alt="Accountant" />
+    </div>
+  </div>
+</div>

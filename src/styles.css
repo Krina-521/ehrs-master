@@ -66,10 +66,10 @@ img {
 .input-group {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 9px;
 }
 .input-group mat-form-field {
-  width: 32.4%;
+  width: 32%;
 }
 .illustration-container {
   margin: 15px;

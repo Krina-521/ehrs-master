@@ -12,6 +12,14 @@ export class CommonDataService {
   relationShip: string[] = ['Single', 'Married'];
   codes: string[] = ['India - +91', 'USA - +1', 'Australia - +61'];
   status: string[] = ['Alive', 'Dead'];
+  staffType: string[] = [
+    'Doctor',
+    'Nurse',
+    'Receptionist',
+    'Pharmacist',
+    'Laboratorists',
+    'Accountants',
+  ];
   getDepartment() {
     return this.departments;
   }
@@ -29,5 +37,8 @@ export class CommonDataService {
   }
   getStatus() {
     return this.status;
+  }
+  getStaffType() {
+    return this.staffType;
   }
 }

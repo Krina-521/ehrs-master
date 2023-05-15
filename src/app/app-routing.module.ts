@@ -77,6 +77,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/rooms/rooms.module').then((m) => m.RoomsModule),
       },
+      {
+        path: 'blood-donor',
+        loadChildren: () =>
+          import('./pages/blood-donor/blood-donor.module').then(
+            (m) => m.BloodDonorModule
+          ),
+      },
     ],
   },
   { path: 'login', component: LoginComponent },

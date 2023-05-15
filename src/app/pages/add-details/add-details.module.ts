@@ -13,6 +13,7 @@ import { PharmacistComponent } from './pharmacist/pharmacist.component';
 import { LaboratoristComponent } from './laboratorist/laboratorist.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { StaffComponent } from './staff/staff.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PharmacistComponent,
     LaboratoristComponent,
     ReceptionistComponent,
+    StaffComponent,
   ],
   imports: [
     CommonModule,

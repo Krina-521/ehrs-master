@@ -1,1 +1,39 @@
-<p>Show records works!</p>
+<div class="add-details-container">
+  <form>
+    <mat-form-field appearance="fill" class="details-options full-width">
+      <mat-label>Select option to see records</mat-label>
+      <mat-select (valueChange)="onSelection($event)">
+        <mat-option *ngFor="let detail of details" [value]="detail.value">
+          {{ detail.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <div [ngSwitch]="selectedOption">
+    <div *ngSwitchDefault>
+      <app-birth-records [title]="details[0].viewValue"></app-birth-records>
+    </div>
+
+    <div *ngSwitchCase="'deathRecord'">
+      <app-death-records [title]="details[1].viewValue"></app-death-records>
+    </div>
+
+    <div *ngSwitchCase="'operationRecord'">
+      <app-operation-records
+        [title]="details[2].viewValue"
+      ></app-operation-records>
+    </div>
+
+    <div *ngSwitchCase="'healthRecord'">
+      <app-health-records [title]="details[3].viewValue"></app-health-records>
+    </div>
+
+    <div *ngSwitchCase="'medicalRecord'">
+      <app-medical-records [title]="details[4].viewValue"></app-medical-records>
+    </div>
+
+    <div *ngSwitchCase="'billingRecord'">
+      <app-billing-records [title]="details[5].viewValue"></app-billing-records>
+    </div>
+  </div>
+</div>

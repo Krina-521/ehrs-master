@@ -61,38 +61,47 @@
         </mat-form-field>
       </div>
 
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Email Address</mat-label>
-        <input matInput type="email" formControlName="patientEmail" required />
-        <mat-error
-          *ngIf="
-            patientForm.get('patientEmail')?.touched &&
-            patientForm.get('patientEmail')?.errors &&
-            patientForm.get('patientEmail')?.hasError('required')
-          "
-        >
-          Email is required
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Department Name</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="patientDepartment"
-          required
-        />
-        <mat-error
-          *ngIf="
-            patientForm.get('patientDepartment')?.touched &&
-            patientForm.get('patientDepartment')?.errors &&
-            patientForm.get('patientDepartment')?.hasError('required')
-          "
-        >
-          Department is required
-        </mat-error>
-      </mat-form-field>
+      <div class="input-phone-group">
+        <mat-form-field class="phone-code-width" appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <mat-select formControlName="patientCountryCode">
+            <mat-option *ngFor="let code of codes" [value]="code">
+              {{ code }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              patientForm.get('patientCountryCode')?.touched &&
+              patientForm.get('patientCountryCode')?.errors &&
+              patientForm.get('patientCountryCode')?.hasError('required')
+            "
+          >
+            Code is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="phone-width" appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="tel" formControlName="patientPhoneNumber" />
+          <mat-error
+            *ngIf="
+              patientForm.get('patientPhoneNumber')?.touched &&
+              patientForm.get('patientPhoneNumber')?.errors &&
+              patientForm.get('patientPhoneNumber')?.hasError('required')
+            "
+          >
+            Phone is required
+          </mat-error>
+          <mat-error
+            *ngIf="
+              patientForm.get('patientPhoneNumber')?.touched &&
+              patientForm.get('patientPhoneNumber')?.errors &&
+              patientForm.get('patientPhoneNumber')?.hasError('pattern')
+            "
+          >
+            Please enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+      </div>
 
       <div class="input-group">
         <mat-form-field appearance="outline" class="gender-options">
@@ -115,32 +124,37 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Age</mat-label>
-          <input matInput type="number" formControlName="patientAge" required />
           <!-- <input
             matInput
+            type="number"
+            formControlName="patientBirthDate"
+            required
+          /> -->
+          <input
+            matInput
             [matDatepicker]="picker"
-            formControlName="patientAge"
+            formControlName="patientBirthDate"
           />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker> -->
+          <mat-datepicker #picker></mat-datepicker>
           <mat-error
             *ngIf="
-              patientForm.get('patientAge')?.touched &&
-              patientForm.get('patientAge')?.errors &&
-              patientForm.get('patientAge')?.hasError('required')
+              patientForm.get('patientBirthDate')?.touched &&
+              patientForm.get('patientBirthDate')?.errors &&
+              patientForm.get('patientBirthDate')?.hasError('required')
             "
           >
             Please enter your age
           </mat-error>
           <mat-error
             *ngIf="
-              patientForm.get('patientAge')?.touched &&
-              patientForm.get('patientAge')?.errors &&
-              patientForm.get('patientAge')?.hasError('max')
+              patientForm.get('patientBirthDate')?.touched &&
+              patientForm.get('patientBirthDate')?.errors &&
+              patientForm.get('patientBirthDate')?.hasError('max')
             "
           >
             Please enter a valid age
@@ -170,6 +184,20 @@
       </div>
 
       <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email Address</mat-label>
+        <input matInput type="email" formControlName="patientEmail" required />
+        <mat-error
+          *ngIf="
+            patientForm.get('patientEmail')?.touched &&
+            patientForm.get('patientEmail')?.errors &&
+            patientForm.get('patientEmail')?.hasError('required')
+          "
+        >
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
         <mat-label>Address</mat-label>
         <input matInput type="text" required formControlName="patientAddress" />
         <mat-error
@@ -184,6 +212,25 @@
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Extra Details</mat-label>
+        <textarea
+          matInput
+          type="text"
+          formControlName="extraDetails"
+          required
+        ></textarea>
+        <mat-error
+          *ngIf="
+            patientForm.get('extraDetails')?.touched &&
+            patientForm.get('extraDetails')?.errors &&
+            patientForm.get('extraDetails')?.hasError('required')
+          "
+        >
+          Department is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="full-width" appearance="outline">
         <mat-label>Phone Number</mat-label>
         <input
           matInput
@@ -209,7 +256,7 @@
         >
           Please enter a valid phone number
         </mat-error>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <div class="button-groups">
         <button

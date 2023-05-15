@@ -25,6 +25,7 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { AuthComponent } from './admin/auth/auth.component';
 import { AccountComponent } from './admin/account/account.component';
 import { AvatarComponent } from './admin/avatar/avatar.component';
+
 // import { CalendarModule } from 'primeng/calendar';
 // import { SupabaseModule } from '@supabase/supabase-js';
 
