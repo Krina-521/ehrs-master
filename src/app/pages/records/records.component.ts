@@ -17,6 +17,7 @@ export class RecordsComponent {
     { value: 'operation-records', viewValue: 'Operation Record' },
     { value: 'health-records', viewValue: 'Health Record' },
     { value: 'medical-records', viewValue: 'Medical Record' },
+    { value: 'billing-records', viewValue: 'Billing Record' },
   ];
 
   onSelection(value: string) {

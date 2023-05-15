@@ -1,1 +1,145 @@
-<p>medical-records works!</p>
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="medicationRecordsForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Patient ID</mat-label>
+        <input matInput type="text" required formControlName="patientId" />
+        <mat-error
+          *ngIf="
+            medicationRecordsForm.get('patientId')?.touched &&
+            medicationRecordsForm.get('patientId')?.errors &&
+            medicationRecordsForm.get('patientId')?.hasError('required')
+          "
+        >
+          Patient ID is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            medicationRecordsForm.get('patientId')?.touched &&
+            medicationRecordsForm.get('patientId')?.errors &&
+            medicationRecordsForm.get('patientId')?.hasError('minlength')
+          "
+        >
+          Patient ID must be of 5 or more characters
+        </mat-error>
+      </mat-form-field>
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Prescribed By</mat-label>
+          <input matInput type="text" required formControlName="prescribedBy" />
+          <mat-error
+            *ngIf="
+              medicationRecordsForm.get('prescribedBy')?.touched &&
+              medicationRecordsForm.get('prescribedBy')?.errors &&
+              medicationRecordsForm.get('prescribedBy')?.hasError('required')
+            "
+          >
+            Prescribed By field is required
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              medicationRecordsForm.get('prescribedBy')?.touched &&
+              medicationRecordsForm.get('prescribedBy')?.errors &&
+              medicationRecordsForm
+                .get('prescribedBy')
+                ?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Pharmacist Id</mat-label>
+          <input matInput type="text" required formControlName="pharmacistId" />
+          <mat-error
+            *ngIf="
+              medicationRecordsForm.get('pharmacistId')?.touched &&
+              medicationRecordsForm.get('pharmacistId')?.errors &&
+              medicationRecordsForm.get('pharmacistId')?.hasError('required')
+            "
+          >
+            Pharmacist Id is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Meds</mat-label>
+          <input matInput formControlName="meds" required />
+          <mat-error
+            *ngIf="
+              medicationRecordsForm.get('meds')?.touched &&
+              medicationRecordsForm.get('meds')?.errors &&
+              medicationRecordsForm.get('meds')?.hasError('required')
+            "
+          >
+            Meds required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Record Date</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="recordDate"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              medicationRecordsForm.get('recordDate')?.touched &&
+              medicationRecordsForm.get('recordDate')?.errors &&
+              medicationRecordsForm.get('recordDate')?.hasError('required')
+            "
+          >
+            Please enter record Date
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Bill Id</mat-label>
+          <input matInput type="text" formControlName="billId" required />
+          <mat-error
+            *ngIf="
+              medicationRecordsForm.get('billId')?.touched &&
+              medicationRecordsForm.get('billId')?.errors &&
+              medicationRecordsForm.get('billId')?.hasError('required')
+            "
+          >
+            Bill Id is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!medicationRecordsForm.valid"
+        >
+          Add Operation Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/medical_record.avif'" alt="Accountant" />
+    </div>
+  </div>
+</div>

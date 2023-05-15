@@ -41,14 +41,18 @@ export class OperationRecordsComponent {
     // this.codes = this.common.getCodes();
     this.operationRecordForm = this._fb.group({
       patientId: ['', [Validators.required, Validators.minLength(5)]],
-      operatedBy: ['', [Validators.required, Validators.minLength(5)]],
+      operatedBy: ['', [Validators.required, Validators.minLength(3)]],
+      assistedBy: ['', [Validators.required, Validators.minLength(3)]],
       patientFirstName: ['', [Validators.required, Validators.minLength(3)]],
       patientLastName: ['', [Validators.required, Validators.minLength(3)]],
       patientAge: ['', [Validators.required, Validators.max(120)]],
       patientGender: ['', [Validators.required]],
       operationFor: ['', [Validators.required]],
+      status: ['', [Validators.required]],
       operationDuration: ['', [Validators.required]],
-      operationTime: ['', [Validators.required]],
+      operationStartTime: ['', [Validators.required]],
+      operationEndTime: ['', [Validators.required]],
+      operationRoom: ['', [Validators.required]],
       // causalties
       medication: ['', [Validators.required]],
       otherDetails: [''],

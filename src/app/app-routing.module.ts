@@ -72,6 +72,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./pages/records/records.module').then((m) => m.RecordsModule),
       },
+      {
+        path: 'rooms',
+        loadChildren: () =>
+          import('./pages/rooms/rooms.module').then((m) => m.RoomsModule),
+      },
     ],
   },
   { path: 'login', component: LoginComponent },

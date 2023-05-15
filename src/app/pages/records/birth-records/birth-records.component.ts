@@ -65,6 +65,7 @@ export class BirthRecordsComponent {
         [Validators.required, Validators.min(0), Validators.max(5)],
       ],
       birthHeight: ['', [Validators.required, Validators.max(100)]],
+      birthStatus: ['', [Validators.required]],
       operationId: ['', [Validators.required]],
       // accountantPhoneNumber: [
       //   '',

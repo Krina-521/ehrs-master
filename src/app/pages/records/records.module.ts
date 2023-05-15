@@ -9,6 +9,7 @@ import { DeathRecordsComponent } from './death-records/death-records.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { MedicalRecordsComponent } from './medical-records/medical-records.component';
+import { BillingRecordsComponent } from './billing-records/billing-records.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MedicalRecordsComponent } from './medical-records/medical-records.compo
     BirthRecordsComponent,
     DeathRecordsComponent,
     MedicalRecordsComponent,
+    BillingRecordsComponent,
   ],
   imports: [
     CommonModule,

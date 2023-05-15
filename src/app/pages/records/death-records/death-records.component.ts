@@ -38,6 +38,7 @@ export class DeathRecordsComponent {
       birthDate: ['', [Validators.required]],
       deathDate: ['', [Validators.required]],
       causeOfDeath: ['', [Validators.required]],
+      recordedBy: ['', [Validators.required]],
     });
   }
   myFilter = (date: Date | null): boolean => {

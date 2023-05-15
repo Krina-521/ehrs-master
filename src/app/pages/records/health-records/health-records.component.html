@@ -1,1 +1,179 @@
-<p>health-records works!</p>
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="healthRecordsForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Patient ID</mat-label>
+        <input matInput type="text" required formControlName="patientId" />
+        <mat-error
+          *ngIf="
+            healthRecordsForm.get('patientId')?.touched &&
+            healthRecordsForm.get('patientId')?.errors &&
+            healthRecordsForm.get('patientId')?.hasError('required')
+          "
+        >
+          Patient ID is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            healthRecordsForm.get('patientId')?.touched &&
+            healthRecordsForm.get('patientId')?.errors &&
+            healthRecordsForm.get('patientId')?.hasError('minlength')
+          "
+        >
+          Patient ID must be of 5 or more characters
+        </mat-error>
+      </mat-form-field>
+      <div class="two-field-input-group">
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Operated By</mat-label>
+          <input matInput type="text" required formControlName="recordedBy" />
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('recordedBy')?.touched &&
+              healthRecordsForm.get('recordedBy')?.errors &&
+              healthRecordsForm.get('recordedBy')?.hasError('required')
+            "
+          >
+            Recorded By field is required
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              healthRecordsForm.get('recordedBy')?.touched &&
+              healthRecordsForm.get('recordedBy')?.errors &&
+              healthRecordsForm
+                .get('recordedBy')
+                ?.hasError('minlength')
+            "
+          >
+            First Name must be of 3 or more characters
+          </mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Heredity Issues</mat-label>
+          <input
+            matInput
+            type="text"
+            required
+            formControlName="heredityIssues"
+          />
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('heredityIssues')?.touched &&
+              healthRecordsForm.get('heredityIssues')?.errors &&
+              healthRecordsForm.get('heredityIssues')?.hasError('required')
+            "
+          >
+            Heredity Issues is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Allergies</mat-label>
+          <input matInput formControlName="allergies" required />
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('allergies')?.touched &&
+              healthRecordsForm.get('allergies')?.errors &&
+              healthRecordsForm.get('allergies')?.hasError('required')
+            "
+          >
+            Allergies required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Diagnoses</mat-label>
+          <input matInput type="email" required formControlName="diagnoses" />
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('diagnoses')?.touched &&
+              healthRecordsForm.get('diagnoses')?.errors &&
+              healthRecordsForm.get('diagnoses')?.hasError('required')
+            "
+          >
+            Diagnoses field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Record Date</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="recordDate"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('recordDate')?.touched &&
+              healthRecordsForm.get('recordDate')?.errors &&
+              healthRecordsForm.get('recordDate')?.hasError('required')
+            "
+          >
+            Please enter record Date
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="half-width" appearance="outline">
+          <mat-label>Visit Number</mat-label>
+          <input matInput type="text" formControlName="visitNo" required />
+          <mat-error
+            *ngIf="
+              healthRecordsForm.get('visitNo')?.touched &&
+              healthRecordsForm.get('visitNo')?.errors &&
+              healthRecordsForm.get('visitNo')?.hasError('required')
+            "
+          >
+            Visit Number is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Progress Notes</mat-label>
+        <input matInput formControlName="progressNotes" />
+        <mat-error
+          *ngIf="
+            healthRecordsForm.get('progressNotes')?.touched &&
+            healthRecordsForm.get('progressNotes')?.errors &&
+            healthRecordsForm.get('progressNotes')?.hasError('required')
+          "
+        >
+          Please enter medication details
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!healthRecordsForm.valid"
+        >
+          Add Operation Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/health_record.avif'" alt="Accountant" />
+    </div>
+  </div>
+</div>

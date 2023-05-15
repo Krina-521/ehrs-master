@@ -189,6 +189,19 @@
           Please enter death date
         </mat-error>
       </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Recorded By</mat-label>
+        <input matInput formControlName="recordedBy" required />
+        <mat-error
+          *ngIf="
+            deathRecordForm.get('recordedBy')?.touched &&
+            deathRecordForm.get('recordedBy')?.errors &&
+            deathRecordForm.get('recordedBy')?.hasError('required')
+          "
+        >
+          Please enter recorded by
+        </mat-error>
+      </mat-form-field>
 
       <div class="button-groups">
         <button
@@ -203,8 +216,8 @@
         </button>
       </div>
     </form>
-    <!-- <div class="illustration-container">
-      <img [src]="'assets/images/Accountant.avif'" alt="Accountant" />
-    </div> -->
+    <div class="illustration-container">
+      <img [src]="'assets/images/death_record.jpg'" alt="Accountant" />
+    </div>
   </div>
 </div>
