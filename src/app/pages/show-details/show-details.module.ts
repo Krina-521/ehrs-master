@@ -6,10 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatNativeDateModule} from '@angular/material/core';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { StaffDetailsComponent } from './staff-details/staff-details.component';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 
 @NgModule({
-  declarations: [ShowDetailsComponent],
+  declarations: [ShowDetailsComponent, DepartmentDetailsComponent, StaffDetailsComponent, PatientDetailsComponent],
   imports: [
     CommonModule,
     ShowDetailsRoutingModule,

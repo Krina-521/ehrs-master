@@ -1,1 +1,136 @@
-<p>billing-records works!</p>
+<div class="wrapper">
+  <div class="wrapper-title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div class="wrapper-container">
+    <form
+      class="half-width"
+      [formGroup]="billingRecordForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Recorded By</mat-label>
+        <input matInput type="text" required formControlName="recordedBy" />
+        <mat-error
+          *ngIf="
+            billingRecordForm.get('recordedBy')?.touched &&
+            billingRecordForm.get('recordedBy')?.errors &&
+            billingRecordForm.get('recordedBy')?.hasError('required')
+          "
+        >
+          Recorded By field is required
+        </mat-error>
+        <mat-error
+          *ngIf="
+            billingRecordForm.get('recordedBy')?.touched &&
+            billingRecordForm.get('recordedBy')?.errors &&
+            billingRecordForm.get('recordedBy')?.hasError('minlength')
+          "
+        >
+          First Name must be of 3 or more characters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Patient Name</mat-label>
+        <input matInput type="text" required formControlName="patientId" />
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-error
+          *ngIf="
+            billingRecordForm.get('patientId')?.touched &&
+            billingRecordForm.get('patientId')?.errors &&
+            billingRecordForm.get('patientId')?.hasError('required')
+          "
+        >
+          Patient ID is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="two-field-input-group">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Bill Number</mat-label>
+          <input matInput formControlName="billNumber" required />
+          <mat-error
+            *ngIf="
+              billingRecordForm.get('billNumber')?.touched &&
+              billingRecordForm.get('billNumber')?.errors &&
+              billingRecordForm.get('billNumber')?.hasError('required')
+            "
+          >
+            Bill Number required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Expenses</mat-label>
+          <input matInput formControlName="expenses" required />
+          <mat-error
+            *ngIf="
+              billingRecordForm.get('expenses')?.touched &&
+              billingRecordForm.get('expenses')?.errors &&
+              billingRecordForm.get('expenses')?.hasError('required')
+            "
+          >
+            Expenses required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Record Date</mat-label>
+        <input
+          matInput
+          [matDatepickerFilter]="myFilter"
+          [matDatepicker]="picker"
+          formControlName="recordDate"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error
+          *ngIf="
+            billingRecordForm.get('recordDate')?.touched &&
+            billingRecordForm.get('recordDate')?.errors &&
+            billingRecordForm.get('recordDate')?.hasError('required')
+          "
+        >
+          Please enter record Date
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Bill Notes</mat-label>
+        <textarea
+          matInput
+          type="text"
+          formControlName="billNotes"
+          required
+        ></textarea>
+        <mat-error
+          *ngIf="
+            billingRecordForm.get('billNotes')?.touched &&
+            billingRecordForm.get('billNotes')?.errors &&
+            billingRecordForm.get('billNotes')?.hasError('required')
+          "
+        >
+          Bill Notes is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-groups">
+        <button
+          mat-raised-button
+          class="submit-btn"
+          [disabled]="!billingRecordForm.valid"
+        >
+          Add Operation Record
+        </button>
+        <button mat-raised-button color="warn" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+    <div class="illustration-container">
+      <img [src]="'assets/images/billing_record.avif'" alt="Accountant" />
+    </div>
+  </div>
+</div>

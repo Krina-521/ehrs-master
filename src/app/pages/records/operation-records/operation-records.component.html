@@ -9,8 +9,9 @@
       (ngSubmit)="onSubmit()"
     >
       <mat-form-field class="full-width" appearance="outline">
-        <mat-label>Patient ID</mat-label>
+        <mat-label>Patient Name</mat-label>
         <input matInput type="text" required formControlName="patientId" />
+        <mat-icon matSuffix>search</mat-icon>
         <mat-error
           *ngIf="
             operationRecordForm.get('patientId')?.touched &&
@@ -19,15 +20,6 @@
           "
         >
           Patient ID is required
-        </mat-error>
-        <mat-error
-          *ngIf="
-            operationRecordForm.get('patientId')?.touched &&
-            operationRecordForm.get('patientId')?.errors &&
-            operationRecordForm.get('patientId')?.hasError('minlength')
-          "
-        >
-          Patient ID must be of 5 or more characters
         </mat-error>
       </mat-form-field>
       <div class="two-field-input-group">

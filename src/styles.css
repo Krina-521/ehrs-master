@@ -83,10 +83,11 @@ img {
 .form-container {
   width: 40%;
   display: block;
-  margin: 160px auto;
+  margin: 90px auto;
   padding: 48px;
   border-radius: 16px;
   align-items: center;
+  background-image: linear-gradient(to bottom right, #fc2947, #a6bbc6);
 }
 
 .form-container mat-form-field {
@@ -142,4 +143,7 @@ img {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+.link-color {
+  color: var(--color-blue);
 }

@@ -37,6 +37,7 @@ export class PatientsComponent {
         [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
       ],
       patientAddress: ['', [Validators.required]],
+      insuranceCardNumber: ['', Validators.required],
     });
   }
   get patientFirstName() {

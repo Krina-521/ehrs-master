@@ -212,6 +212,25 @@
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Insurance Card Number</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          formControlName="insuranceCardNumber"
+        />
+        <mat-error
+          *ngIf="
+            patientForm.get('insuranceCardNumber')?.touched &&
+            patientForm.get('insuranceCardNumber')?.errors &&
+            patientForm.get('insuranceCardNumber')?.hasError('required')
+          "
+        >
+          Insurance Card Number is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
         <mat-label>Extra Details</mat-label>
         <textarea
           matInput

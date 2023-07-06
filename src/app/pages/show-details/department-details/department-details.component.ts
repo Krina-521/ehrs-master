@@ -12,86 +12,66 @@ interface Category {
 
 export interface Data {
   id: number;
-  name: string;
-  lastName: string;
-  gender: string;
-  patientId: string;
-  motherName: string;
-  fatherName: string;
-  birthDate: string;
-  birthTime: string;
-  weight: number;
-  height: number;
-  status: string;
+  departmentCode: string;
+  departmentName: string;
+  description: string;
 }
 
 const DETAILS: Data[] = [
   {
     id: 1,
-    name: 'Aariv',
-    lastName: 'Shah',
-    gender: 'Male',
-    patientId: 'PR-01237',
-    motherName: 'Kesha',
-    fatherName: 'Jeet',
-    birthDate: '07/23/2022',
-    birthTime: '14:45',
-    weight: 3,
-    height: 2,
-    status: 'Live',
+    departmentCode: 'OR',
+    departmentName: 'Operating Room',
+    description: 'Surgical procedure',
   },
   {
     id: 2,
-    name: 'Ram',
-    lastName: 'Vekariya',
-    gender: 'Male',
-    patientId: 'PR-03239',
-    motherName: 'Pooja',
-    fatherName: 'Prakash',
-    birthDate: '12/04/2022',
-    birthTime: '22:05',
-    weight: 2.5,
-    height: 2.2,
-    status: 'Live',
+    departmentCode: 'ICU',
+    departmentName: 'Intensive Care Unit',
+    description: 'Critical conditioned patient are handled there',
   },
   {
     id: 3,
-    name: 'Pihu',
-    lastName: 'Kapoor',
-    gender: 'Male',
-    patientId: 'PR-04537',
-    motherName: 'Priya',
-    fatherName: 'Ram',
-    birthDate: '10/20/2022',
-    birthTime: '08:14',
-    weight: 3.2,
-    height: 2.4,
-    status: 'Live',
+    departmentCode: 'OPT',
+    departmentName: 'Optometrist',
+    description: 'Examine, diagnoses, give treatment diseases related to eyes.',
   },
+  {
+    id: 4,
+    departmentCode: 'GYN',
+    departmentName: 'Gynecology',
+    description: 'Prenatal care center, Child Birth center',
+  },
+  {
+    id: 5,
+    departmentCode: 'ED',
+    departmentName: 'Emergency Department',
+    description:
+      'Urgent medical treatment to any patient having serious illness or injuries',
+  },
+  // {
+  //   id: 6,
+  //   departmentCode: 'PED',
+  //   departmentName: 'Pediatrics',
+  //   description: 'Infants treatment, their medication, vaccination',
+  // },
 ];
+
 @Component({
-  selector: 'app-birth-records',
-  templateUrl: './birth-records.component.html',
-  styleUrls: ['./birth-records.component.css'],
+  selector: 'app-department-details',
+  templateUrl: './department-details.component.html',
+  styleUrls: ['./department-details.component.css'],
 })
-export class BirthRecordsComponent {
+export class DepartmentDetailsComponent {
   dropdownList: any = [];
   selectedItems: any = [];
   dropdownSettings: any = {};
 
   displayedColumns: string[] = [
     'id',
-    'name',
-    'lastName',
-    'gender',
-    'patientId',
-    'motherName',
-    'fatherName',
-    'birthDate',
-    'birthTime',
-    'weight',
-    'height',
-    'status',
+    'departmentCode',
+    'departmentName',
+    'description',
   ];
   dataSource = new MatTableDataSource(DETAILS);
 

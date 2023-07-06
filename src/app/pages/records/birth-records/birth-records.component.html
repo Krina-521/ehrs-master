@@ -85,8 +85,9 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width" appearance="outline">
-          <mat-label>Patient ID</mat-label>
+          <mat-label>Patient Name</mat-label>
           <input matInput type="text" required formControlName="patientId" />
+          <mat-icon matSuffix>search</mat-icon>
           <mat-error
             *ngIf="
               birthRecordForm.get('patientId')?.touched &&
@@ -94,16 +95,7 @@
               birthRecordForm.get('patientId')?.hasError('required')
             "
           >
-            Last Name is required
-          </mat-error>
-          <mat-error
-            *ngIf="
-              birthRecordForm.get('patientId')?.touched &&
-              birthRecordForm.get('patientId')?.errors &&
-              birthRecordForm.get('patientId')?.hasError('minlength')
-            "
-          >
-            Last Name must be of 3 or more characters
+            Patient Name is required
           </mat-error>
         </mat-form-field>
       </div>
@@ -172,21 +164,59 @@
             Please enter a valid birth date
           </mat-error> -->
         </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Birth Time</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker"
+            formControlName="birthTime"
+          />
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              birthRecordForm.get('birthTime')?.touched &&
+              birthRecordForm.get('birthTime')?.errors &&
+              birthRecordForm.get('birthTime')?.hasError('required')
+            "
+          >
+            Please enter birth time
+          </mat-error>
+          <!-- <mat-error
+            *ngIf="
+              birthRecordForm.get('birthTime')?.touched &&
+              birthRecordForm.get('birthTime')?.errors &&
+              birthRecordForm.get('birthTime')?.hasError('max')
+            "
+          >
+            Please enter a valid birth date
+          </mat-error> -->
+        </mat-form-field>
         <!-- <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            [(ngModel)]="event.start"
-            (ngModelChange)="refresh.next($event)"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set"
-          /> -->
-        <!-- <div class="card flex justify-content-center half-width">
-            <p-calendar [(ngModel)]="date" [showTime]="true" [showSeconds]="true" [showIcon]="true"></p-calendar>
+          class="form-control"
+          type="text"
+          mwlFlatpickr
+          [(ngModel)]="event.start"
+          (ngModelChange)="refresh.next($event)"
+          [altInput]="true"
+          [convertModelValue]="true"
+          [enableTime]="true"
+          dateFormat="Y-m-dTH:i"
+          altFormat="F j, Y H:i"
+          placeholder="Not set"
+        />
+        <div class="card flex justify-content-center half-width">
+          <p-calendar
+            [(ngModel)]="date"
+            [showTime]="true"
+            [showSeconds]="true"
+            [showIcon]="true"
+          ></p-calendar>
         </div> -->
       </div>
 
@@ -247,32 +277,28 @@
         </mat-form-field>
       </div>
 
-      <div class="two-field-input-group">
-        <mat-form-field appearance="outline" class="half-width">
-          <mat-label>Born Status</mat-label>
-          <mat-select
-            formControlName="birthStatus"
-            [(ngModel)]="selectedStatus"
-            required
-          >
-            <mat-option
-              *ngFor="let status of birthStatusOption"
-              [value]="status"
-            >
-              {{ status }}
-            </mat-option>
-          </mat-select>
-          <mat-error
-            *ngIf="
-              birthRecordForm.get('birthStatus')?.touched &&
-              birthRecordForm.get('birthStatus')?.errors &&
-              birthRecordForm.get('birthStatus')?.hasError('required')
-            "
-          >
-            Need to select one appropriate option
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="half-width">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Born Status</mat-label>
+        <mat-select
+          formControlName="birthStatus"
+          [(ngModel)]="selectedStatus"
+          required
+        >
+          <mat-option *ngFor="let status of birthStatusOption" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            birthRecordForm.get('birthStatus')?.touched &&
+            birthRecordForm.get('birthStatus')?.errors &&
+            birthRecordForm.get('birthStatus')?.hasError('required')
+          "
+        >
+          Need to select one appropriate option
+        </mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field appearance="outline" class="half-width">
           <mat-label>Operation ID</mat-label>
           <input matInput formControlName="operationId" required />
           <mat-error
@@ -284,8 +310,7 @@
           >
             Operation ID is required
           </mat-error>
-        </mat-form-field>
-      </div>
+        </mat-form-field> -->
 
       <div class="button-groups">
         <button

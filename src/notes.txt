@@ -31,3 +31,11 @@ Dashboard tile should be clickable and should redirect to the patients/ doctor .
 >> Add country code dropdown (India - +91, Pakistan - +92)
 >> Change all the forms and take all the input as same as doctor
 >> Make all the field compulsory / required
+
+
+TO DO FOR ME:
+(CODES)
+- Login & signup screen
+- Dashboard segregate upcoming feature
+(REPORTS)
+- Jitna bhi baki ho sab jakh marke jesa bhi complete karna padega

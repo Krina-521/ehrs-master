@@ -191,28 +191,46 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="half-width">
-          <mat-label>Height in cm</mat-label>
-          <input matInput type="number" formControlName="height" required />
+          <mat-label>Blood Collected in ml</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="bloodCollected"
+            required
+          />
           <mat-error
             *ngIf="
-              bloodDonorForm.get('height')?.touched &&
-              bloodDonorForm.get('height')?.errors &&
-              bloodDonorForm.get('height')?.hasError('required')
+              bloodDonorForm.get('bloodCollected')?.touched &&
+              bloodDonorForm.get('bloodCollected')?.errors &&
+              bloodDonorForm.get('bloodCollected')?.hasError('required')
             "
           >
-            Height is required
+            Blood collection count is required
           </mat-error>
           <mat-error
             *ngIf="
-              bloodDonorForm.get('height')?.touched &&
-              bloodDonorForm.get('height')?.errors &&
-              bloodDonorForm.get('height')?.hasError('max')
+              bloodDonorForm.get('bloodCollected')?.touched &&
+              bloodDonorForm.get('bloodCollected')?.errors &&
+              bloodDonorForm.get('bloodCollected')?.hasError('max')
             "
           >
-            Please enter a valid height
+            Please enter a valid blood collection number
           </mat-error>
         </mat-form-field>
       </div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Heredity issues if any</mat-label>
+        <input matInput type="text" formControlName="heredityIssues" required />
+        <mat-error
+          *ngIf="
+            bloodDonorForm.get('heredityIssues')?.touched &&
+            bloodDonorForm.get('heredityIssues')?.errors &&
+            bloodDonorForm.get('heredityIssues')?.hasError('required')
+          "
+        >
+          Heredity Issues is required
+        </mat-error>
+      </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Last time blood donated</mat-label>
