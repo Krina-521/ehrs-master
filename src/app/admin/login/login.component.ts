@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup | any;
-
+  title = 'Login';
   isLoggedIn: boolean = false;
 
   constructor(
@@ -39,10 +39,12 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  getErrorMessage(){
-    return this.loginForm.controls['email'].hasError('required') ? 'You must enter a email':
-            this.loginForm.controls['email'].hasError('required') ? 'Not a valid email':
-            '';
+  getErrorMessage() {
+    return this.loginForm.controls['email'].hasError('required')
+      ? 'You must enter a email'
+      : this.loginForm.controls['email'].hasError('required')
+      ? 'Not a valid email'
+      : '';
   }
 
   login() {
